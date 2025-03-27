@@ -10,7 +10,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public string Customer { get; set; } = string.Empty;
         public decimal TotalAmount { get; set; }
         public string Branch { get; set; } = string.Empty;
-        public List<SaleItem>? Items { get; set; }
+        public List<SaleItem>? SaleItems { get; set; }
         public SaleStatus Status { get; set; }
 
         /// <summary>

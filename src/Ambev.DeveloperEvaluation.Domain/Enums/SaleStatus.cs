@@ -2,6 +2,7 @@
 {
     public enum SaleStatus
     {
+        Unknown = 0,
         Active,
         Inactive
     }
