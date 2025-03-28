@@ -7,10 +7,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
     {
         public SaleValidator()
         {
-            RuleFor(sale => sale.Id)
-                .NotEqual(Guid.Empty)
-                .WithMessage("Invalid Id");
-
             RuleFor(sale => sale.SaleNumber)
                 .NotEmpty().WithMessage("Sale number cannot be None");
 

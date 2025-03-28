@@ -7,10 +7,10 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
 {
     public class GetSaleHandler : IRequestHandler<GetSaleCommand, GetSaleResult>
     {
-        private readonly ISaleRepository _saleRepository;
+        private readonly ISaleItemRepository _saleRepository;
         private readonly IMapper _mapper;
 
-        public GetSaleHandler(ISaleRepository saleRepository, IMapper mapper)
+        public GetSaleHandler(ISaleItemRepository saleRepository, IMapper mapper)
         {
             _saleRepository = saleRepository;
             _mapper = mapper;

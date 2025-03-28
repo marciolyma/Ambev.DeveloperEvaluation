@@ -9,14 +9,14 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.DeleteSale
     /// </summary>
     public class DeleteSaleHandler : IRequestHandler<DeleteSaleCommand, DeleteSaleResponse>
     {
-        private readonly ISaleRepository _saleRepository;
+        private readonly ISaleItemRepository _saleRepository;
 
         /// <summary>
         /// Initializes a new instance of DeleteSaleHandler
         /// </summary>
         /// <param name="saleRepository">The sale repository</param>
         /// <param name="validator">The validator for DeleteSaleCommand</param>
-        public DeleteSaleHandler(ISaleRepository saleRepository)
+        public DeleteSaleHandler(ISaleItemRepository saleRepository)
         {
             _saleRepository = saleRepository;
         }

@@ -13,10 +13,10 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 {
     public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleResult>
     {
-        private readonly ISaleRepository _saleRepository;
+        private readonly ISaleItemRepository _saleRepository;
         private readonly IMapper _mapper;
 
-        public UpdateSaleHandler(ISaleRepository saleRepository, IMapper mapper)
+        public UpdateSaleHandler(ISaleItemRepository saleRepository, IMapper mapper)
         {
             _saleRepository = saleRepository;
             _mapper = mapper;

@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Domain.Enums;
+﻿using Ambev.DeveloperEvaluation.Domain.Enums;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
 {
@@ -14,7 +13,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
         public string Customer { get; set; } = string.Empty;
         public decimal TotalAmount { get; set; }
         public string Branch { get; set; } = string.Empty;
-        public List<SaleItem>? SaleItems { get; set; }
+        public List<GetSaleItemResult>? SaleItems { get; set; }
         public SaleStatus Status { get; set; }
 
 

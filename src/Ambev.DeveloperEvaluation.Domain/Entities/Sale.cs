@@ -3,6 +3,9 @@ using Ambev.DeveloperEvaluation.Domain.Enums;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
+    /// <summary>
+    /// Represents a sale in the system.
+    /// </summary>
     public class Sale : BaseEntity
     {
         public DateTime SaleDate { get; set; }

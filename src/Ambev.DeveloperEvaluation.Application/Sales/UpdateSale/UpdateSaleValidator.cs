@@ -7,11 +7,13 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
     {
         public UpdateSaleValidator()
         {
+            RuleFor(sale => sale.Id).NotEmpty();
             RuleFor(sale => sale.SaleNumber).NotEmpty();
             RuleFor(sale => sale.Customer).NotEmpty().Length(3, 100);
             RuleFor(sale => sale.Branch).Must(ValidBranch);
             RuleFor(sale => sale.TotalAmount).Must(ValidAmount);
             RuleFor(sale => sale.Status).NotEqual(SaleStatus.Unknown);
+            RuleFor(sale => sale.SaleItems).ForEach(item => item.SetValidator(new SaleItemValidator()));
         }
         protected static bool ValidBranch(string branch)
         {
