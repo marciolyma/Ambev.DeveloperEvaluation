@@ -27,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
             var sale = await _saleRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (sale == null)
-                throw new InvalidOperationException($"Sale with id {request.Id} not found");
+                throw new KeyNotFoundException($"Sale with id {request.Id} not found");
 
             return _mapper.Map<GetSaleResult>(sale);
         }

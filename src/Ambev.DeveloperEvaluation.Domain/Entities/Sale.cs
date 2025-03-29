@@ -10,11 +10,11 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
     {
         public DateTime SaleDate { get; set; }
         public string SaleNumber { get; set; } = string.Empty;
-        public string Customer { get; set; } = string.Empty;
         public decimal TotalAmount { get; set; }
-        public string Branch { get; set; } = string.Empty;
-        public List<SaleItem>? SaleItems { get; set; }
+        public Guid BranchId { get; set; } 
         public SaleStatus Status { get; set; }
+        public virtual List<SaleItem>? SaleItems { get; set; }
+        public virtual Branch Branch { get; set; }
 
         /// <summary>
         /// Gets the date and time when the sale was created.
@@ -26,6 +26,9 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Sale"/> class.
+        /// </summary>
         public Sale()
         {
             CreatedAt = DateTime.UtcNow;

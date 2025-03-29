@@ -26,7 +26,7 @@ namespace Ambev.DeveloperEvaluation.Application.SaleItems.GetSaleItem
 
             var saleItem = await _saleItemRepository.GetByIdAsync(request.Id, cancellationToken);
             if (saleItem == null)
-                throw new InvalidOperationException($"SaleItem with id {request.Id} not found");
+                throw new KeyNotFoundException($"SaleItem with id {request.Id} not found");
 
             return _mapper.Map<GetSaleItemResult>(saleItem);
         }

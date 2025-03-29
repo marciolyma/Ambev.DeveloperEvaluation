@@ -9,10 +9,10 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
 {
     public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleResult>
     {
-        private readonly ISaleItemRepository _saleRepository;
+        private readonly ISaleRepository _saleRepository;
         private readonly IMapper _mapper;
 
-        public CreateSaleHandler(ISaleItemRepository saleRepository, IMapper mapper)
+        public CreateSaleHandler(ISaleRepository saleRepository, IMapper mapper)
         {
             _saleRepository = saleRepository;
             _mapper = mapper;
@@ -27,6 +27,9 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
                 throw new ValidationException(validationResult.Errors);
 
             var sale = _mapper.Map<Sale>(command);
+
+            if (sale == null)
+                throw new KeyNotFoundException("Sale not found");
 
             var createdSale = await _saleRepository.CreateAsync(sale, cancellationToken);
             var result = _mapper.Map<CreateSaleResult>(createdSale);

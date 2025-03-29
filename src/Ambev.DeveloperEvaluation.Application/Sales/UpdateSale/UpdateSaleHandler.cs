@@ -13,10 +13,10 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 {
     public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleResult>
     {
-        private readonly ISaleItemRepository _saleRepository;
+        private readonly ISaleRepository _saleRepository;
         private readonly IMapper _mapper;
 
-        public UpdateSaleHandler(ISaleItemRepository saleRepository, IMapper mapper)
+        public UpdateSaleHandler(ISaleRepository saleRepository, IMapper mapper)
         {
             _saleRepository = saleRepository;
             _mapper = mapper;
@@ -31,6 +31,9 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
                 throw new ValidationException(validationResult.Errors);
 
             var sale = _mapper.Map<Sale>(command);
+
+            if (sale == null)
+                throw new KeyNotFoundException("Sale not found");
 
             var updatedSale = await _saleRepository.UpdateAsync(sale, cancellationToken);
 
