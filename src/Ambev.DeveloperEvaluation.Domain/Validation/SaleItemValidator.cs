@@ -1,10 +1,5 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ambev.DeveloperEvaluation.Domain.Validation
 {
@@ -12,11 +7,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
     {
         public SaleItemValidator()
         {
-            RuleFor(saleItem => saleItem.ProductName)
-            .NotEmpty().WithMessage("ProductName cannot be None")
-            .MinimumLength(3).WithMessage("ProductName must be at least 3 characters long.")
-            .MaximumLength(50).WithMessage("ProductName cannot be longer than 50 characters.");
-
             RuleFor(saleItem => saleItem.Quantity)
                 .NotEmpty().WithMessage("Product Name must be greater than 0");
 

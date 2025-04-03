@@ -13,9 +13,20 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             _context = context;
         }
 
-        public async Task<List<Sale>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<(List<Sale> Sales, int TotalCount)> GetAllPagedAsync(
+            int pageNumber,
+            int pageSize,
+            CancellationToken cancellationToken = default)
         {
-            return await _context.Sales.Include(i => i.SaleItems).ToListAsync(cancellationToken);
+            var query = _context.Sales.AsQueryable();
+            var totalCount = await query.CountAsync(cancellationToken);
+            var sales = await query
+                .Include(i => i.SaleItems)
+                .OrderBy(s => s.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+            return (sales, totalCount);
         }
 
 

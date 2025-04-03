@@ -4,7 +4,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
 {
     public interface IBranchRepository
     {
-        public Task<(List<Branch> Branches, int TotalAcount)> GetAllPagedAsync(
+        Task<(List<Branch> Branches, int TotalAcount)> GetAllPagedAsync(
             int pageNumber,
             int pageSize,
             CancellationToken cancellationToken = default);

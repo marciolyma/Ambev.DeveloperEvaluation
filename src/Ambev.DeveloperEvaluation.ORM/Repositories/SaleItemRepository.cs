@@ -21,9 +21,20 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<List<SaleItem>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<(List<SaleItem> SaleItems, int TotalCount)> GetAllPagedAsync(
+            int pageNumber,
+            int pageSize,
+            CancellationToken cancellationToken = default)
         {
-            return await _context.SaleItems.ToListAsync(cancellationToken);
+            var query = _context.SaleItems.AsQueryable();
+            var totalCount = await query.CountAsync(cancellationToken);
+            var saleItems = await query
+                .OrderBy(s => s.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+
+            return (saleItems, totalCount);
         }
 
         /// <summary>
