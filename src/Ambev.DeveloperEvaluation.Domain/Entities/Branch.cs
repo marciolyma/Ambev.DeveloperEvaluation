@@ -11,6 +11,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public BranchStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public Guid CustomerId { get; set; }
+        public List<Customer> Customers { get; set; }
 
         public Branch()
         {

@@ -13,14 +13,49 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             _context = context;
         }
 
-        public async Task<List<Branch>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<(List<Branch> Branches, int TotalAcount)> GetAllPagedAsync(
+            int pageNumber,
+            int pageSize,
+            CancellationToken cancellationToken = default)
         {
-            return await _context.Branches.ToListAsync(cancellationToken);
+            var query = _context.Branches.AsQueryable();
+
+            var totalCount = await query.CountAsync(cancellationToken);
+
+            var branches = await query
+                .OrderBy(b => b.Name)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+
+            return (branches, totalCount);
+
         }
 
         public async Task<Branch?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Branches.FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
+        }
+
+        public async Task<(List<Branch> Branches, int TotalAcount)> GetByCustomerIdPagedAsync(
+            Guid CustomerId,
+            int pageNumber,
+            int pageSize,
+            CancellationToken cancellationToken = default)
+        {
+            var query = _context.Branches
+                .Where(b => b.CustomerId == CustomerId)
+                .AsQueryable();
+
+            var totalCount = await query.CountAsync(cancellationToken);
+
+            var branches = await query
+                .OrderBy(b => b.Name)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+
+            return (branches, totalCount);
         }
 
 
@@ -48,6 +83,5 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
-
     }
 }
