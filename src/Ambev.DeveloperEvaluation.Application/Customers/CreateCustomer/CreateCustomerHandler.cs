@@ -1,5 +1,5 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Domain.Events;
+using Ambev.DeveloperEvaluation.Domain.Events.Customers;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using FluentValidation;
@@ -30,7 +30,7 @@ namespace Ambev.DeveloperEvaluation.Application.Customers.CreateCustomer
             var createdCustomer = await _customerRepository.CreateAsync(customer, cancellationToken);
             var result = _mapper.Map<CreateCustomerResult>(createdCustomer);
 
-            await _mediator.Publish(new CustomerCreatedEvent(createdCustomer.Id, createdCustomer.Name), cancellationToken);
+            await _mediator.Publish(new CustomerCreatedEvent(customer), cancellationToken);
 
             return result;
 

@@ -1,5 +1,7 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Common;
+﻿using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.Domain.Common;
 using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Domain.Validation;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
@@ -25,6 +27,17 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         /// Gets the date and time of the last update to the sale's information.
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
+
+        public ValidationResultDetail Validate()
+        {
+            var validator = new SaleValidator();
+            var result = validator.Validate(this);
+            return new ValidationResultDetail
+            {
+                IsValid = result.IsValid,
+                Errors = result.Errors.Select(e => (ValidationErrorDetail)e)
+            };
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Sale"/> class.

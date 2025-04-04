@@ -1,5 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Events;
+using Ambev.DeveloperEvaluation.Domain.Events.Branches;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using MediatR;
@@ -33,7 +34,7 @@ namespace Ambev.DeveloperEvaluation.Application.Branches.CreateBranch
             var createdBranch = await _branchRepository.CreateAsync(branch, cancellationToken);
             var result = _mapper.Map<CreateBranchResult>(createdBranch);
 
-            await _mediator.Publish(new BranchCreatedEvent(createdBranch.Id, createdBranch.Name), cancellationToken);
+            await _mediator.Publish(new BranchCreatedEvent(branch), cancellationToken);
 
             return result;
         }

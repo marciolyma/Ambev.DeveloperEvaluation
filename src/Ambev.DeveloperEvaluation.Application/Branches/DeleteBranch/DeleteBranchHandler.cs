@@ -38,8 +38,6 @@ namespace Ambev.DeveloperEvaluation.Application.Branches.DeleteBranch
             if (!success)
                 throw new KeyNotFoundException($"Branch with ID {request.Id} not found.");
 
-            await _mediator.Publish(new BranchDeletedEvent(request.Id), cancellationToken);
-
             return new DeleteBranchResponse { Success = true };
         }
     }

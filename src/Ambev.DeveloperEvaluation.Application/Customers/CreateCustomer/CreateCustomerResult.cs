@@ -10,9 +10,5 @@
         /// </summary>
         public Guid Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the customer.
-        /// </summary>
-        public decimal TotalAmount { get; set; }
     }
 }
