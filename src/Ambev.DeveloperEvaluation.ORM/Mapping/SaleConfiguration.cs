@@ -28,6 +28,11 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
                    .HasColumnType("uuid")
                    .IsRequired();
 
+            builder.Property(u => u.Status)
+                   .HasConversion<string>()
+                   .HasMaxLength(20);
+
+
             builder.HasOne(x => x.Branch)
                    .WithMany()
                    .HasForeignKey(x => x.BranchId);

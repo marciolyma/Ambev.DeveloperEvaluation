@@ -27,9 +27,9 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
                    .HasColumnType("decimal(18,2)")
                    .IsRequired();
 
-
-
-
+            builder.Property(u => u.Status)
+                   .HasConversion<string>()
+                   .HasMaxLength(20);
         }
     }
 }

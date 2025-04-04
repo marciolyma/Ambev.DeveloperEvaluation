@@ -18,6 +18,11 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.Property(b => b.Name)
                      .HasColumnType("varchar(100)")
                      .IsRequired();
+
+            builder.Property(u => u.Status)
+                    .HasConversion<string>()
+                    .HasMaxLength(20);
+
         }
     }
 }

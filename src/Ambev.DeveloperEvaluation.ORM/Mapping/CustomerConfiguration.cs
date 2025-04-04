@@ -19,6 +19,11 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.HasMany(c => c.Branches)
                    .WithOne()
                    .HasForeignKey(b => b.CustomerId);
+
+            builder.Property(u => u.Status)
+                   .HasConversion<string>()
+                   .HasMaxLength(20);
+
         }
     }
 }
