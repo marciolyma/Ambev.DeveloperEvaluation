@@ -11,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public decimal Discount { get; set; }
         public decimal TotalAmount { get; set; }
         public Sale? Sale { get; set; }
-        public Product? Product { get; set; }
+        public virtual Product? Product { get; set; }
 
 
     }

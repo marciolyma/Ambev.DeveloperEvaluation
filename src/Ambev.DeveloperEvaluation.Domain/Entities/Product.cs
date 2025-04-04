@@ -40,7 +40,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         /// <summary>
         /// Gets or sets the sale items associated with the product.
         /// </summary>
-        public virtual List<SaleItem> SaleItems { get; set; }
+        public virtual List<SaleItem>? SaleItems { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Product"/> class.

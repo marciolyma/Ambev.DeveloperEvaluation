@@ -12,7 +12,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public Guid CustomerId { get; set; }
-        public List<Customer> Customers { get; set; }
+        public virtual Customer? Customer { get; set; }
 
         public Branch()
         {
