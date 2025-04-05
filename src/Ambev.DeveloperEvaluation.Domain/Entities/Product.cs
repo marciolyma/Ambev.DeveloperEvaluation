@@ -19,9 +19,9 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         /// </summary>
         public string Description { get; set; } = string.Empty;
         /// <summary>
-        /// Gets or sets the price of the product.
+        /// Gets or sets the unitPrice of the product.
         /// </summary>
-        public decimal Price { get; set; }
+        public decimal UnitPrice { get; set; }
         /// <summary>
         /// Gets or sets the status of the product.
         /// </summary>

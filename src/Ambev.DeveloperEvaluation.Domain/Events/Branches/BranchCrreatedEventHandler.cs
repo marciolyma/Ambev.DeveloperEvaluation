@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Serilog;
 
 namespace Ambev.DeveloperEvaluation.Domain.Events.Branches
 {
@@ -8,7 +9,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Events.Branches
         {
             // Handle the event here
             // For example, you could log the event or perform some other action
-            Console.WriteLine($"Branch created: {notification.Branch}");
+            Log.Information($"Branch created: {notification.Branch}");
             return Task.CompletedTask;
         }
     }

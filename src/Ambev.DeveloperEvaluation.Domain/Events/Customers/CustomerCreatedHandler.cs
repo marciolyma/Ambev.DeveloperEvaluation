@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Serilog;
 
 namespace Ambev.DeveloperEvaluation.Domain.Events.Customers
 {
@@ -10,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Events.Customers
         {
             // Handle the event here
             // For example, you could log the event or perform some other action
-            Console.WriteLine($"Customer created: {notification.Customer}");
+            Log.Information($"Customer created: {notification.Customer}");
             return Task.CompletedTask;
         }
     }

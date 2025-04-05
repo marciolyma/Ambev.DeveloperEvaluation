@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Serilog;
 
 namespace Ambev.DeveloperEvaluation.Domain.Events.Sales
 {
@@ -6,9 +7,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Events.Sales
     {
         public Task Handle(SaleCreatedEvent notification, CancellationToken cancellationToken)
         {
-            // Handle the event here
-            // For example, you could log the event or perform some other action
-            Console.WriteLine($"Sale created: {notification.Sale}");
+            Log.Information($"Sale created: {notification.Sale}");
             return Task.CompletedTask;
         }
     }
