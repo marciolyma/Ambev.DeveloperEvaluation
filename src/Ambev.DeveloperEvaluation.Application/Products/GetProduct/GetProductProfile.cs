@@ -4,11 +4,11 @@ using AutoMapper;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct
 {
-    public class CreateProductProfile : Profile
+    public class GetProductProfile : Profile
     {
-        public CreateProductProfile()
+        public GetProductProfile()
         {
-            CreateMap<CreateProductCommand, Product>();
+            CreateMap<GetProductCommand, Product>();
             CreateMap<Product, CreateProductResult>();
         }
     }

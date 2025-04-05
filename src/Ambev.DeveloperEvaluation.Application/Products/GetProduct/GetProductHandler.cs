@@ -8,22 +8,22 @@ using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct
 {
-    public class CreateProductHandler : IRequestHandler<CreateProductCommand, CreateProductResult>
+    public class GetProductHandler : IRequestHandler<GetProductCommand, GetProductResult>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public CreateProductHandler(IProductRepository productRepository, IMapper mapper, IMediator mediator)
+        public GetProductHandler(IProductRepository productRepository, IMapper mapper, IMediator mediator)
         {
             _productRepository = productRepository;
             _mapper = mapper;
             _mediator = mediator;
         }
 
-        public async Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<GetProductResult> Handle(GetProductCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateProductCommandValidator();
+            var validator = new GetProductCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
@@ -33,7 +33,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct
 
             await _mediator.Publish(new ProductCreatedEvent(product), cancellationToken);
 
-            return _mapper.Map<CreateProductResult>(createdProduct);
+            return _mapper.Map<GetProductResult>(createdProduct);
         }
     }
 }

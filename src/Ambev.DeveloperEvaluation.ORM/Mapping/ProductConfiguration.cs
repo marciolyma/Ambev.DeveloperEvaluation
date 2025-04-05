@@ -23,7 +23,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
                    .HasColumnType("varchar(100)")
                    .IsRequired();
 
-            builder.Property(p => p.Price)
+            builder.Property(p => p.UnitPrice)
                    .HasColumnType("decimal(18,2)")
                    .IsRequired();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct
 {
-    public class GetUserResult
+    public class GetProductResult
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;

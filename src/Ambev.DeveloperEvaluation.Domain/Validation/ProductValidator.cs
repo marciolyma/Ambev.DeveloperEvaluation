@@ -12,7 +12,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
                 .MinimumLength(3).WithMessage("Product Name must be at least 3 characters long.")
                 .MaximumLength(100).WithMessage("Product Name cannot be longer than 100 characters.");
 
-            RuleFor(product => product.Price)
+            RuleFor(product => product.UnitPrice)
                 .Must(ValidPrice).WithMessage("Price must be greater than 0");
         }
         protected static bool ValidPrice(decimal price)

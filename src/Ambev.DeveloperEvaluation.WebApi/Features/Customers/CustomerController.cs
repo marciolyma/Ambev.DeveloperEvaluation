@@ -79,5 +79,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Customers
                 Success = true,
                 Message = "Customer deleted successfully"
             });
+
         }
+    }
 }
