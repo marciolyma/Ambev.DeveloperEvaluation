@@ -43,9 +43,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             int pageSize,
             CancellationToken cancellationToken = default)
         {
-            var query = _context.Branches
-                .Where(b => b.CustomerId == CustomerId)
-                .AsQueryable();
+            var query = _context.Branches.AsQueryable();
 
             var totalCount = await query.CountAsync(cancellationToken);
 

@@ -16,9 +16,6 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.Property(c => c.Name)
                      .HasColumnType("varchar(100)")
                      .IsRequired();
-            builder.HasMany(c => c.Branches)
-                   .WithOne()
-                   .HasForeignKey(b => b.CustomerId);
 
             builder.Property(u => u.Status)
                    .HasConversion<string>()
