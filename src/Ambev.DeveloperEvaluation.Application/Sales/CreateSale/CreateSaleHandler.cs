@@ -37,7 +37,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
                 item.Discount = DiscountCalculator.CalculateDiscount(item.Quantity, item.UnitPrice);
                 item.UnitPrice = item.Product.UnitPrice;
             }
-            sale.TotalAmount = sale.SaleItems.Sum(i => i.TotalAmount);
+            sale.TotalAmount = sale.SaleItems.Sum(i => (i.Quantity * i.UnitPrice) - i.Discount);
 
             var createdSale = await _saleRepository.CreateAsync(sale, cancellationToken);
             var result = _mapper.Map<CreateSaleResult>(createdSale);
