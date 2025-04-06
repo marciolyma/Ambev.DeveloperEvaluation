@@ -81,6 +81,24 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
             });
         }
 
-
+        [HttpDelete("{id}/cancel")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> CancelSale(Guid id, CancellationToken cancellationToken)
+        {
+            var request = new GetSaleRequest { Id = id };
+            var validator = new GetSaleRequestValidator();
+            var validatorResult = await validator.ValidateAsync(request, cancellationToken);
+            if (!validatorResult.IsValid)
+                return BadRequest(validatorResult.Errors);
+            var command = _mapper.Map<GetSaleCommand>(request);
+            var response = await _mediator.Send(command, cancellationToken);
+            return Ok(new ApiResponse
+            {
+                Success = true,
+                Message = "Sale canceled successfully"
+            });
+        }
     }
 }

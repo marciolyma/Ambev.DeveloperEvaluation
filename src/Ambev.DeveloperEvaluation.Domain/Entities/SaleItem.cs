@@ -10,7 +10,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public decimal UnitPrice { get; set; }
         public decimal Discount { get; set; }
         public decimal TotalAmount => (Quantity * UnitPrice) - Discount;
-        public Sale? Sale { get; set; }
+        public virtual Sale? Sale { get; set; }
         public virtual Product? Product { get; set; }
 
 

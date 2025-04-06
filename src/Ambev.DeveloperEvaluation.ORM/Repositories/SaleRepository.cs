@@ -1,6 +1,7 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Enums;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories
@@ -71,7 +72,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             if (sale == null)
                 return false;
 
-            sale.Status = SaleStatus.Cenceled;
+            sale.CancelSale();
 
             await _context.SaveChangesAsync(cancellationToken);
             return true;

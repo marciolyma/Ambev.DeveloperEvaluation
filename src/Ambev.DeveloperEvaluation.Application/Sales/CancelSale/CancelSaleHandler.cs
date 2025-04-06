@@ -20,6 +20,10 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale
             if (!validatorResult.IsValid)
                 throw new KeyNotFoundException($"Sale with ID {request.Id} not found");
 
+            var success = await _saleRepository.CancelAsync(request.Id, cancellationToken);
+            if (!success)
+                throw new KeyNotFoundException($"Sale with ID {request.Id} not found");
+
             await _mediator.Publish(new SaleCanceledEvent(request.Id), cancellationToken);
 
             return new CancelSaleResponse { Success = true };
