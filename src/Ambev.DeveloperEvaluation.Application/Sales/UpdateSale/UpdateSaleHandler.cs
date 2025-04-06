@@ -1,5 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.Domain.Seed;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
@@ -34,6 +35,12 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 
             if (sale == null)
                 throw new KeyNotFoundException("Sale not found");
+
+            foreach (var item in sale.SaleItems)
+            {
+                item.Discount = DiscountCalculator.CalculateDiscount(item.Quantity, item.UnitPrice);
+            }
+            sale.TotalAmount = sale.SaleItems.Sum(i => i.TotalAmount);
 
             var updatedSale = await _saleRepository.UpdateAsync(sale, cancellationToken);
 
