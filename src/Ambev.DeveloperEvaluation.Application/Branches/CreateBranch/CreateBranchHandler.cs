@@ -25,7 +25,7 @@ namespace Ambev.DeveloperEvaluation.Application.Branches.CreateBranch
 
         public async Task<CreateBranchResult> Handle(CreateBranchCommand command, CancellationToken cancellationToken)
         {
-            var validator = new CreateBranchValidator();
+            var validator = new CreateBranchCommandValidator();
             var validationResult = await validator.ValidateAsync(command, cancellationToken);
             if (!validationResult.IsValid)
                 throw new InvalidCastException(validationResult.Errors.First().ErrorMessage);

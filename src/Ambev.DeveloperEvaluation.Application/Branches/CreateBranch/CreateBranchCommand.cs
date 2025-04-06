@@ -9,7 +9,7 @@ namespace Ambev.DeveloperEvaluation.Application.Branches.CreateBranch
 
         public ValidationResultDetail Validate()
         {
-            var validator = new CreateBranchValidator();
+            var validator = new CreateBranchCommandValidator();
             var result = validator.Validate(this);
             return new ValidationResultDetail
             {

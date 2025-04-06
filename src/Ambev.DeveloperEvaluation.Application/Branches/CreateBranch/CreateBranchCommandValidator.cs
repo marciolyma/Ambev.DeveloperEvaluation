@@ -2,9 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Branches.CreateBranch
 {
-    public class CreateBranchValidator : AbstractValidator<CreateBranchCommand>
+    public class CreateBranchCommandValidator : AbstractValidator<CreateBranchCommand>
     {
-        public CreateBranchValidator()
+        public CreateBranchCommandValidator()
         {
             RuleFor(branch => branch.Name)
                 .NotEmpty()

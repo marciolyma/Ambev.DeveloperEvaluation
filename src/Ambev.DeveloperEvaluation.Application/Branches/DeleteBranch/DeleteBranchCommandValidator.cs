@@ -2,9 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Branches.DeleteBranch
 {
-    public class DeleteBranchValidator : AbstractValidator<DeleteBranchCommand>
+    public class DeleteBranchCommandValidator : AbstractValidator<DeleteBranchCommand>
     {
-        public DeleteBranchValidator()
+        public DeleteBranchCommandValidator()
         {
             RuleFor(branch => branch.Id)
                 .NotEmpty()

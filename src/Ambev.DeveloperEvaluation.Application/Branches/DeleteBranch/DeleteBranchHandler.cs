@@ -29,7 +29,7 @@ namespace Ambev.DeveloperEvaluation.Application.Branches.DeleteBranch
 
         public async Task<DeleteBranchResponse> Handle(DeleteBranchCommand request, CancellationToken cancellationToken)
         {
-            var validator = new DeleteBranchValidator();
+            var validator = new DeleteBranchCommandValidator();
             var validationResult = validator.Validate(request);
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
