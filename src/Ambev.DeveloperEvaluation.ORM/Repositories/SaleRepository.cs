@@ -20,7 +20,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             int pageSize,
             CancellationToken cancellationToken = default)
         {
-            var query = _context.Sales.AsQueryable();
+            var query = _context.Sales.Include(s => s.SaleItems).AsQueryable();
             var totalCount = await query.CountAsync(cancellationToken);
             var sales = await query
                 .Include(i => i.SaleItems)
@@ -40,14 +40,6 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         public async Task<Sale> CreateAsync(Sale sale, CancellationToken cancellationToken = default)
         {
             await _context.Sales.AddAsync(sale, cancellationToken);
-            await _context.SaveChangesAsync();
-
-            return sale;
-        }
-
-        public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
-        {
-            _context.Update(sale);
             await _context.SaveChangesAsync();
 
             return sale;

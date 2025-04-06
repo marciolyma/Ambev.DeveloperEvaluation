@@ -35,6 +35,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
             foreach (var item in sale.SaleItems)
             {
                 item.Discount = DiscountCalculator.CalculateDiscount(item.Quantity, item.UnitPrice);
+                item.UnitPrice = item.Product.UnitPrice;
             }
             sale.TotalAmount = sale.SaleItems.Sum(i => i.TotalAmount);
 

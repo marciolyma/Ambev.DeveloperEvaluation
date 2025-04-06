@@ -10,11 +10,6 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
             RuleFor(sale => sale.SaleNumber)
                 .NotEmpty().WithMessage("Sale number cannot be None");
 
-            RuleFor(sale => sale.Customer)
-            .NotEmpty().WithMessage("Customer cannot be None")
-            .MinimumLength(3).WithMessage("Customer must be at least 3 characters long.")
-            .MaximumLength(100).WithMessage("Customer cannot be longer than 100 characters.");
-
             RuleFor(sale => sale.Branch)
                 .Must(ValidBranch)
                 .WithMessage("Branch Must be between 3 and 100 characters long");

@@ -26,7 +26,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             int pageSize,
             CancellationToken cancellationToken = default)
         {
-            var query = _context.SaleItems.AsQueryable();
+            var query = _context.SaleItems.Include(s => s.Product).AsQueryable();
             var totalCount = await query.CountAsync(cancellationToken);
             var saleItems = await query
                 .OrderBy(s => s.Id)
@@ -45,7 +45,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <returns></returns>
         public async Task<SaleItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.SaleItems.FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
+            return await _context.SaleItems.Include(s => s.Product).FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <returns></returns>
         public async Task<List<SaleItem>?> GetBySaleIdAsync(Guid saleId, CancellationToken cancellationToken = default)
         {
-            return await _context.SaleItems.Where(s => s.SaleId == saleId).ToListAsync(cancellationToken);
+            return await _context.SaleItems.Include(s => s.Product).Where(s => s.SaleId == saleId).ToListAsync(cancellationToken);
         }
 
         /// <summary>
@@ -68,20 +68,6 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         public async Task<SaleItem> CreateAsync(SaleItem saleItem, CancellationToken cancellationToken = default)
         {
             await _context.SaleItems.AddAsync(saleItem, cancellationToken);
-            await _context.SaveChangesAsync();
-
-            return saleItem;
-        }
-
-        /// <summary>
-        /// Update a SaleItem
-        /// </summary>
-        /// <param name="saleItem"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public async Task<SaleItem> UpdateAsync(SaleItem saleItem, CancellationToken cancellationToken = default)
-        {
-            _context.Update(saleItem);
             await _context.SaveChangesAsync();
 
             return saleItem;
