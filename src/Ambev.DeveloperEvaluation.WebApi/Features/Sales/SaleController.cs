@@ -1,6 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+﻿using Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
+using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 using Ambev.DeveloperEvaluation.WebApi.Common;
+using Ambev.DeveloperEvaluation.WebApi.Features.Sales.CancelSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 using AutoMapper;
@@ -42,7 +44,6 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ApiResponseWithData<GetSaleResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetSale(Guid id, CancellationToken cancellationToken)
         {
             var request = new GetSaleRequest { Id = id };
@@ -64,7 +65,6 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteSale(Guid id, CancellationToken cancellationToken)
         {
             var request = new GetSaleRequest { Id = id };
@@ -84,15 +84,14 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         [HttpDelete("{id}/cancel")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CancelSale(Guid id, CancellationToken cancellationToken)
         {
-            var request = new GetSaleRequest { Id = id };
-            var validator = new GetSaleRequestValidator();
+            var request = new CancelSaleRequest { Id = id };
+            var validator = new CancelSaleRequestValidator();
             var validatorResult = await validator.ValidateAsync(request, cancellationToken);
             if (!validatorResult.IsValid)
                 return BadRequest(validatorResult.Errors);
-            var command = _mapper.Map<GetSaleCommand>(request);
+            var command = _mapper.Map<CancelSaleCommand>(request);
             var response = await _mediator.Send(command, cancellationToken);
             return Ok(new ApiResponse
             {

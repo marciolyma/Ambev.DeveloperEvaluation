@@ -64,13 +64,6 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             return branch;
         }
 
-        public async Task<Branch> UpdateAsync(Branch branch, CancellationToken cancellationToken = default)
-        {
-            _context.Update(branch);
-            await _context.SaveChangesAsync();
-            return branch;
-        }
-
         public async Task<bool> DeleteAsync(Guid Id, CancellationToken cancellationToken = default)
         {
             var branch = await GetByIdAsync(Id, cancellationToken);
