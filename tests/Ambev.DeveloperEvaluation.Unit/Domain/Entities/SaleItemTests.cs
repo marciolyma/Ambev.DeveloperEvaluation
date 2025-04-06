@@ -72,11 +72,23 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
             Assert.False(result.IsValid);
         }
         [Fact]
-        public void Given_Quantity_When_Validated_Then_ShouldReturnInvalid()
+        public void Given_Quantity_greater_than_twenty_When_Validated_Then_ShouldReturnInvalid()
         {
             // Arrange
             var saleItem = SaleItemTestData.GenerateValidSaleItem();
             saleItem.Quantity = 21;
+            // Act
+            var result = saleItem.Validate();
+            // Assert
+            Assert.False(result.IsValid);
+        }
+
+        [Fact]
+        public void Given_Quantity_Less_than_twenty_When_Validated_Then_ShouldReturnInvalid()
+        {
+            // Arrange
+            var saleItem = SaleItemTestData.GenerateValidSaleItem();
+            saleItem.Quantity = 10;
             // Act
             var result = saleItem.Validate();
             // Assert
