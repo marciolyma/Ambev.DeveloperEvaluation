@@ -2,9 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Customers.GetCustomer
 {
-    public class GetCustomerValidator : AbstractValidator<GetCustomerCommand>
+    public class GetCustomerCommandValidator : AbstractValidator<GetCustomerCommand>
     {
-        public GetCustomerValidator()
+        public GetCustomerCommandValidator()
         {
             RuleFor(customer => customer.Id)
                 .NotEmpty()

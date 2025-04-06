@@ -5,12 +5,12 @@ namespace Ambev.DeveloperEvaluation.Application.SaleItems.CreateSaleItem
     /// <summary>
     /// Validator for the CreateSaleItemCommand.
     /// </summary>
-    public class CreateSaleItemValidator : AbstractValidator<CreateSaleItemCommand>
+    public class CreateSaleItemCommandValidator : AbstractValidator<CreateSaleItemCommand>
     {
         /// <summary>
         /// Initializes a new instance of the CreateSaleItemValidator with defined validation rules.
         /// </summary>
-        public CreateSaleItemValidator()
+        public CreateSaleItemCommandValidator()
         {
             RuleFor(saleItem => saleItem.ProductName)
                 .NotEmpty().WithMessage("ProductName cannot be None")

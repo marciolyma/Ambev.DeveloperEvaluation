@@ -2,9 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Customers.DeleteCustomer
 {
-    public class DeleteCustomerValidator : AbstractValidator<DeleteCustomerCommand>
+    public class DeleteCustomerCommandValidator : AbstractValidator<DeleteCustomerCommand>
     {
-        public DeleteCustomerValidator()
+        public DeleteCustomerCommandValidator()
         {
             RuleFor(customer => customer.Id)
                 .NotEmpty()

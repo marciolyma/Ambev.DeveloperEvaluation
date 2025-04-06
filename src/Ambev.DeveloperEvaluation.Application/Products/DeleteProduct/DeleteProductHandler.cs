@@ -15,7 +15,7 @@ namespace Ambev.DeveloperEvaluation.Application.Products.DeleteProduct
 
         public async Task<DeleteProductResponse> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            var validator = new DeleteProductValidator();
+            var validator = new DeleteProductCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);

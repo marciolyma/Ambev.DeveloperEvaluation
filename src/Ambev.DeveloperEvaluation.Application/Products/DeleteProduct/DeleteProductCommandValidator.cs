@@ -2,9 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Products.DeleteProduct
 {
-    public class DeleteProductValidator : AbstractValidator<DeleteProductCommand>
+    public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
     {
-        public DeleteProductValidator()
+        public DeleteProductCommandValidator()
         {
             RuleFor(x => x.Id)
                 .NotEmpty()

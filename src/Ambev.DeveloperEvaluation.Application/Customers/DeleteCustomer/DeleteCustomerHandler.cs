@@ -20,7 +20,7 @@ namespace Ambev.DeveloperEvaluation.Application.Customers.DeleteCustomer
 
         public async Task<DeleteCustomerResponse> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
-            var validator = new DeleteCustomerValidator();
+            var validator = new DeleteCustomerCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);

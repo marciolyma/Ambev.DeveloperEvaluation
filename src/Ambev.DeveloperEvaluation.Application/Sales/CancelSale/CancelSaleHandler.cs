@@ -15,7 +15,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale
         }
         public async Task<CancelSaleResponse> Handle(CancelSaleCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CancelSaleValidator();
+            var validator = new CancelSaleCommandValidator();
             var validatorResult = await validator.ValidateAsync(request, cancellationToken);
             if (!validatorResult.IsValid)
                 throw new KeyNotFoundException($"Sale with ID {request.Id} not found");

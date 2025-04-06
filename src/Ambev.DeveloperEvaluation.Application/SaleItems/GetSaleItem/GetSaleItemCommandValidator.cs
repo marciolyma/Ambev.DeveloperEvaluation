@@ -2,9 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Application.SaleItems.GetSaleItem
 {
-    public class GetSaleItemValidator : AbstractValidator<GetSaleItemCommand>
+    public class GetSaleItemCommandValidator : AbstractValidator<GetSaleItemCommand>
     {
-        public GetSaleItemValidator()
+        public GetSaleItemCommandValidator()
         {
             RuleFor(saleItem => saleItem.Id)
                 .NotEmpty().WithMessage("Id cannot be None");

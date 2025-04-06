@@ -18,7 +18,7 @@ namespace Ambev.DeveloperEvaluation.Application.Customers.GetCustomer
 
         public async Task<GetCustomerResult> Handle(GetCustomerCommand request, CancellationToken cancellationToken)
         {
-            var validator = new GetCustomerValidator();
+            var validator = new GetCustomerCommandValidator();
             var validationResult = await validator.ValidateAsync(request);
 
             if (!validationResult.IsValid)

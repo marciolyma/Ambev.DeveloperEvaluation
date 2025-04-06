@@ -2,9 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale
 {
-    public class CancelSaleValidator : AbstractValidator<CancelSaleCommand>
+    public class CancelSaleCommandValidator : AbstractValidator<CancelSaleCommand>
     {
-        public CancelSaleValidator()
+        public CancelSaleCommandValidator()
         {
             RuleFor(x => x.Id)
                 .NotEmpty()

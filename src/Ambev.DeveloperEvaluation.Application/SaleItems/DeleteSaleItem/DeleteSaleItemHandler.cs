@@ -30,7 +30,7 @@ namespace Ambev.DeveloperEvaluation.Application.SaleItems.DeleteSaleItem
         /// <exception cref="KeyNotFoundException"></exception>
         public async Task<DeleteSaleItemResponse> Handle(DeleteSaleItemCommand request, CancellationToken cancellationToken)
         {
-            var validator = new DeleteSaleItemValidator();
+            var validator = new DeleteSaleItemCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if(!validationResult.IsValid)
