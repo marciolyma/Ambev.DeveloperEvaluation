@@ -54,6 +54,16 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             return product;
         }
 
+        public async Task<Product> UpdateAsync(Product product, CancellationToken cancellationToken = default)
+        {
+            var existingProduct = await GetByIdAsync(product.Id, cancellationToken);
+            if (existingProduct == null)
+                throw new KeyNotFoundException($"Product with ID {product.Id} not found.");
+            _context.Entry(existingProduct).CurrentValues.SetValues(product);
+            await _context.SaveChangesAsync(cancellationToken);
+            return existingProduct;
+        }
+
         public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var product = await GetByIdAsync(id, cancellationToken);

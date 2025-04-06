@@ -1,8 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Enums;
+﻿using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct
+namespace Ambev.DeveloperEvaluation.Application.Products.UpdateProduct
 {
-    public class CreateProductResult
+    public class UpdateProductCommand : IRequest<UpdateProductResult>
     {
         /// <summary>
         /// Gets or sets the unique identifier of the product.
@@ -20,10 +20,5 @@ namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct
         /// Gets or sets the price of the product.
         /// </summary>
         public decimal UnitPrice { get; set; }
-
-        /// <summary>
-        /// Gets or sets the status of the product.
-        /// </summary>
-        public ProductStatus Status { get; set; }
     }
 }

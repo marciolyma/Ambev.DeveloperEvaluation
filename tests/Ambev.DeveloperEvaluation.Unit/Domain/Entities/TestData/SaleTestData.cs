@@ -20,9 +20,5 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData
         {
             return SaleFaker.Generate();
         }
-
-        
-
-
     }
 }
