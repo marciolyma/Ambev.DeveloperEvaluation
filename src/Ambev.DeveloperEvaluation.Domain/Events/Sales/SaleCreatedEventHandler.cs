@@ -10,5 +10,11 @@ namespace Ambev.DeveloperEvaluation.Domain.Events.Sales
             Log.Information($"Sale created: {notification.Sale}");
             return Task.CompletedTask;
         }
+
+        public Task Handle(SaleCanceledEvent notification, CancellationToken cancellationToken)
+        {
+            Log.Information($"Sale canceled: {notification.SaleId}");
+            return Task.CompletedTask;
+        }
     }
 }

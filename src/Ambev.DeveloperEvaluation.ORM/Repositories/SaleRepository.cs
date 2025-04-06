@@ -1,4 +1,5 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Domain.Enums;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -62,6 +63,19 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             await _context.SaveChangesAsync(cancellationToken);
 
             return true;
+        }
+
+        public async Task<bool> CancelAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var sale = await GetByIdAsync(id, cancellationToken);
+            if (sale == null)
+                return false;
+
+            sale.Status = SaleStatus.Cenceled;
+
+            await _context.SaveChangesAsync(cancellationToken);
+            return true;
+
         }
     }
 }
