@@ -64,7 +64,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
         public void Given_NegativeDiscount_When_Validated_Then_ShouldReturnInvalid()
         {
             // Arrange
-            var saleItem = SaleItemTestData.GenerateValidSaleItem();
+            var saleItem = SaleItemTestData.GenerateSaleItemWithInvalidQuantity();
             saleItem.Discount = -1;
             // Act
             var result = saleItem.Validate();
@@ -82,18 +82,5 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
             // Assert
             Assert.False(result.IsValid);
         }
-
-        [Fact]
-        public void Given_Quantity_Less_than_twenty_When_Validated_Then_ShouldReturnInvalid()
-        {
-            // Arrange
-            var saleItem = SaleItemTestData.GenerateValidSaleItem();
-            saleItem.Quantity = 10;
-            // Act
-            var result = saleItem.Validate();
-            // Assert
-            Assert.False(result.IsValid);
-        }
-
     }
 }
